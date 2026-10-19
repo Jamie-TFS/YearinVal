@@ -1,0 +1,287 @@
+{
+  "_comment": "Simulated VAL-MATCH-V1 match, structurally identical to the real endpoint. Built around My puuid as the Jett player on Red team so you can write 'me' stats. characterId/mapId are real content UUIDs in production (resolved via val-content-v1); here they're readable-but-UUID-shaped placeholders. playerStats are fully populated for you every round and partially for others to keep the file readable - real data has all 10 players each round. Coordinates are plausible ints (can be negative). Times are in millis.",
+
+  "matchInfo": {
+    "matchId": "fake-0001-prototype-match",
+    "mapId": "/Game/Maps/Ascent/Ascent",
+    "gameVersion": "release-09.00",
+    "gameLengthMillis": 2184000,
+    "region": "eu",
+    "gameStartMillis": 1760764800000,
+    "provisioningFlowId": "Matchmaking",
+    "isCompleted": true,
+    "customGameName": "",
+    "queueId": "competitive",
+    "gameMode": "/Game/GameModes/Bomb/BombGameMode.BombGameMode_C",
+    "isRanked": true,
+    "seasonId": "fake-season-2026",
+    "premierMatchInfo": []
+  },
+
+  "players": [
+    {
+      "puuid": "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw",
+      "gameName": "Binah",
+      "tagLine": "Fairy",
+      "teamId": "Red",
+      "partyId": "party-aaa",
+      "characterId": "agent-jett-uuid",
+      "stats": {
+        "score": 5420,
+        "roundsPlayed": 22,
+        "kills": 24,
+        "deaths": 16,
+        "assists": 5,
+        "playtimeMillis": 2184000,
+        "abilityCasts": { "grenadeCasts": 14, "ability1Casts": 19, "ability2Casts": 21, "ultimateCasts": 3 }
+      },
+      "competitiveTier": 17,
+      "isObserver": false,
+      "playerCard": "card-uuid",
+      "playerTitle": "title-uuid",
+      "accountLevel": 212
+    },
+    {
+      "puuid": "teammate-raze-puuid",
+      "gameName": "ZoomZoom",
+      "tagLine": "EUW",
+      "teamId": "Red",
+      "partyId": "party-aaa",
+      "characterId": "agent-raze-uuid",
+      "stats": { "score": 6100, "roundsPlayed": 22, "kills": 27, "deaths": 15, "assists": 7, "playtimeMillis": 2184000, "abilityCasts": { "grenadeCasts": 20, "ability1Casts": 18, "ability2Casts": 22, "ultimateCasts": 4 } },
+      "competitiveTier": 17, "isObserver": false, "playerCard": "card-uuid", "playerTitle": "title-uuid", "accountLevel": 340
+    },
+    {
+      "puuid": "teammate-sova-puuid",
+      "gameName": "DartGod",
+      "tagLine": "EUW",
+      "teamId": "Red",
+      "partyId": "party-bbb",
+      "characterId": "agent-sova-uuid",
+      "stats": { "score": 4800, "roundsPlayed": 22, "kills": 18, "deaths": 17, "assists": 11, "playtimeMillis": 2184000, "abilityCasts": { "grenadeCasts": 22, "ability1Casts": 25, "ability2Casts": 9, "ultimateCasts": 5 } },
+      "competitiveTier": 16, "isObserver": false, "playerCard": "card-uuid", "playerTitle": "title-uuid", "accountLevel": 155
+    },
+    {
+      "puuid": "teammate-omen-puuid",
+      "gameName": "SmokeShow",
+      "tagLine": "EUW",
+      "teamId": "Red",
+      "partyId": "party-ccc",
+      "characterId": "agent-omen-uuid",
+      "stats": { "score": 4100, "roundsPlayed": 22, "kills": 15, "deaths": 18, "assists": 9, "playtimeMillis": 2184000, "abilityCasts": { "grenadeCasts": 12, "ability1Casts": 20, "ability2Casts": 28, "ultimateCasts": 2 } },
+      "competitiveTier": 16, "isObserver": false, "playerCard": "card-uuid", "playerTitle": "title-uuid", "accountLevel": 288
+    },
+    {
+      "puuid": "teammate-killjoy-puuid",
+      "gameName": "TurretDiff",
+      "tagLine": "EUW",
+      "teamId": "Red",
+      "partyId": "party-ddd",
+      "characterId": "agent-killjoy-uuid",
+      "stats": { "score": 3900, "roundsPlayed": 22, "kills": 14, "deaths": 16, "assists": 6, "playtimeMillis": 2184000, "abilityCasts": { "grenadeCasts": 10, "ability1Casts": 15, "ability2Casts": 11, "ultimateCasts": 3 } },
+      "competitiveTier": 15, "isObserver": false, "playerCard": "card-uuid", "playerTitle": "title-uuid", "accountLevel": 97
+    },
+    {
+      "puuid": "enemy-reyna-puuid",
+      "gameName": "NoFlashNoLife",
+      "tagLine": "NA",
+      "teamId": "Blue",
+      "partyId": "party-eee",
+      "characterId": "agent-reyna-uuid",
+      "stats": { "score": 6400, "roundsPlayed": 22, "kills": 28, "deaths": 17, "assists": 3, "playtimeMillis": 2184000, "abilityCasts": { "grenadeCasts": 16, "ability1Casts": 24, "ability2Casts": 20, "ultimateCasts": 6 } },
+      "competitiveTier": 18, "isObserver": false, "playerCard": "card-uuid", "playerTitle": "title-uuid", "accountLevel": 410
+    },
+    {
+      "puuid": "enemy-cypher-puuid",
+      "gameName": "WatchingYou",
+      "tagLine": "NA",
+      "teamId": "Blue",
+      "partyId": "party-fff",
+      "characterId": "agent-cypher-uuid",
+      "stats": { "score": 4300, "roundsPlayed": 22, "kills": 16, "deaths": 19, "assists": 8, "playtimeMillis": 2184000, "abilityCasts": { "grenadeCasts": 18, "ability1Casts": 14, "ability2Casts": 12, "ultimateCasts": 4 } },
+      "competitiveTier": 17, "isObserver": false, "playerCard": "card-uuid", "playerTitle": "title-uuid", "accountLevel": 201
+    },
+    {
+      "puuid": "enemy-breach-puuid",
+      "gameName": "StunLock",
+      "tagLine": "NA",
+      "teamId": "Blue",
+      "partyId": "party-ggg",
+      "characterId": "agent-breach-uuid",
+      "stats": { "score": 4600, "roundsPlayed": 22, "kills": 19, "deaths": 18, "assists": 12, "playtimeMillis": 2184000, "abilityCasts": { "grenadeCasts": 21, "ability1Casts": 23, "ability2Casts": 19, "ultimateCasts": 5 } },
+      "competitiveTier": 16, "isObserver": false, "playerCard": "card-uuid", "playerTitle": "title-uuid", "accountLevel": 178
+    },
+    {
+      "puuid": "enemy-sage-puuid",
+      "gameName": "WallAndChill",
+      "tagLine": "NA",
+      "teamId": "Blue",
+      "partyId": "party-hhh",
+      "characterId": "agent-sage-uuid",
+      "stats": { "score": 3700, "roundsPlayed": 22, "kills": 13, "deaths": 17, "assists": 14, "playtimeMillis": 2184000, "abilityCasts": { "grenadeCasts": 9, "ability1Casts": 17, "ability2Casts": 16, "ultimateCasts": 2 } },
+      "competitiveTier": 15, "isObserver": false, "playerCard": "card-uuid", "playerTitle": "title-uuid", "accountLevel": 133
+    },
+    {
+      "puuid": "enemy-phoenix-puuid",
+      "gameName": "HotHands",
+      "tagLine": "NA",
+      "teamId": "Blue",
+      "partyId": "party-iii",
+      "characterId": "agent-phoenix-uuid",
+      "stats": { "score": 4000, "roundsPlayed": 22, "kills": 17, "deaths": 20, "assists": 6, "playtimeMillis": 2184000, "abilityCasts": { "grenadeCasts": 15, "ability1Casts": 19, "ability2Casts": 18, "ultimateCasts": 3 } },
+      "competitiveTier": 16, "isObserver": false, "playerCard": "card-uuid", "playerTitle": "title-uuid", "accountLevel": 256
+    }
+  ],
+
+  "coaches": [],
+
+  "teams": [
+    { "teamId": "Red",  "won": true,  "roundsPlayed": 22, "roundsWon": 13, "numPoints": 13 },
+    { "teamId": "Blue", "won": false, "roundsPlayed": 22, "roundsWon": 9,  "numPoints": 9 }
+  ],
+
+  "roundResults": [
+    {
+      "roundNum": 0,
+      "roundResult": "Eliminated",
+      "roundCeremony": "CeremonyDefault",
+      "winningTeam": "Red",
+      "winningTeamRole": "Attacker",
+      "bombPlanter": "",
+      "bombDefuser": "",
+      "plantRoundTime": 0,
+      "plantPlayerLocations": [],
+      "plantLocation": { "x": 0, "y": 0 },
+      "plantSite": "",
+      "defuseRoundTime": 0,
+      "defusePlayerLocations": [],
+      "defuseLocation": { "x": 0, "y": 0 },
+      "roundResultCode": "Elimination",
+      "playerStats": [
+        {
+          "puuid": "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw",
+          "kills": [
+            {
+              "timeSinceGameStartMillis": 41000,
+              "timeSinceRoundStartMillis": 23000,
+              "killer": "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw",
+              "victim": "enemy-phoenix-puuid",
+              "victimLocation": { "x": 4120, "y": -2200 },
+              "assistants": [],
+              "playerLocations": [ { "puuid": "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw", "viewRadians": 1.57, "location": { "x": 3900, "y": -2100 } } ],
+              "finishingDamage": { "damageType": "Weapon", "damageItem": "Vandal", "isSecondaryFireMode": false }
+            }
+          ],
+          "damage": [
+            { "receiver": "enemy-phoenix-puuid", "damage": 150, "legshots": 0, "bodyshots": 1, "headshots": 1 },
+            { "receiver": "enemy-reyna-puuid", "damage": 40, "legshots": 1, "bodyshots": 1, "headshots": 0 }
+          ],
+          "score": 310,
+          "economy": { "loadoutValue": 3900, "weapon": "Vandal", "armor": "Heavy", "remaining": 1200, "spent": 3900 },
+          "ability": { "grenadeEffects": "", "ability1Effects": "cast", "ability2Effects": "cast", "ultimateEffects": "" }
+        },
+        {
+          "puuid": "teammate-raze-puuid",
+          "kills": [
+            { "timeSinceGameStartMillis": 52000, "timeSinceRoundStartMillis": 34000, "killer": "teammate-raze-puuid", "victim": "enemy-sage-puuid", "victimLocation": { "x": 5000, "y": -1800 }, "assistants": ["teammate-sova-puuid"], "playerLocations": [], "finishingDamage": { "damageType": "Ability", "damageItem": "Ability2", "isSecondaryFireMode": false } }
+          ],
+          "damage": [ { "receiver": "enemy-sage-puuid", "damage": 160, "legshots": 0, "bodyshots": 2, "headshots": 0 } ],
+          "score": 280,
+          "economy": { "loadoutValue": 4700, "weapon": "Spectre", "armor": "Heavy", "remaining": 800, "spent": 4700 },
+          "ability": { "grenadeEffects": "cast", "ability1Effects": "", "ability2Effects": "cast", "ultimateEffects": "" }
+        }
+      ]
+    },
+    {
+      "roundNum": 1,
+      "roundResult": "Defused",
+      "roundCeremony": "CeremonyDefault",
+      "winningTeam": "Blue",
+      "winningTeamRole": "Defender",
+      "bombPlanter": "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw",
+      "bombDefuser": "enemy-cypher-puuid",
+      "plantRoundTime": 38000,
+      "plantPlayerLocations": [],
+      "plantLocation": { "x": 6100, "y": -900 },
+      "plantSite": "A",
+      "defuseRoundTime": 71000,
+      "defusePlayerLocations": [],
+      "defuseLocation": { "x": 6100, "y": -900 },
+      "roundResultCode": "Defuse",
+      "playerStats": [
+        {
+          "puuid": "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw",
+          "kills": [],
+          "damage": [ { "receiver": "enemy-cypher-puuid", "damage": 55, "legshots": 2, "bodyshots": 1, "headshots": 0 } ],
+          "score": 55,
+          "economy": { "loadoutValue": 2900, "weapon": "Spectre", "armor": "Light", "remaining": 300, "spent": 2900 },
+          "ability": { "grenadeEffects": "", "ability1Effects": "", "ability2Effects": "cast", "ultimateEffects": "" }
+        }
+      ]
+    },
+    {
+      "roundNum": 2,
+      "roundResult": "Detonated",
+      "roundCeremony": "CeremonyAce",
+      "winningTeam": "Red",
+      "winningTeamRole": "Attacker",
+      "bombPlanter": "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw",
+      "bombDefuser": "",
+      "plantRoundTime": 45000,
+      "plantPlayerLocations": [],
+      "plantLocation": { "x": 2200, "y": 3100 },
+      "plantSite": "B",
+      "defuseRoundTime": 0,
+      "defusePlayerLocations": [],
+      "defuseLocation": { "x": 0, "y": 0 },
+      "roundResultCode": "Detonate",
+      "playerStats": [
+        {
+          "puuid": "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw",
+          "kills": [
+            { "timeSinceGameStartMillis": 180000, "timeSinceRoundStartMillis": 15000, "killer": "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw", "victim": "enemy-breach-puuid", "victimLocation": { "x": 2500, "y": 2900 }, "assistants": [], "playerLocations": [ { "puuid": "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw", "viewRadians": 3.1, "location": { "x": 2450, "y": 100 } } ], "finishingDamage": { "damageType": "Weapon", "damageItem": "Phantom", "isSecondaryFireMode": false } },
+            { "timeSinceGameStartMillis": 188000, "timeSinceRoundStartMillis": 23000, "killer": "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw", "victim": "enemy-reyna-puuid", "victimLocation": { "x": 2600, "y": 3000 }, "assistants": ["teammate-sova-puuid"], "playerLocations": [], "finishingDamage": { "damageType": "Weapon", "damageItem": "Phantom", "isSecondaryFireMode": false } },
+            { "timeSinceGameStartMillis": 196000, "timeSinceRoundStartMillis": 31000, "killer": "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw", "victim": "enemy-sage-puuid", "victimLocation": { "x": 2300, "y": 3200 }, "assistants": [], "playerLocations": [], "finishingDamage": { "damageType": "Ability", "damageItem": "Ultimate", "isSecondaryFireMode": false } }
+          ],
+          "damage": [
+            { "receiver": "enemy-breach-puuid", "damage": 145, "legshots": 0, "bodyshots": 2, "headshots": 1 },
+            { "receiver": "enemy-reyna-puuid", "damage": 150, "legshots": 0, "bodyshots": 0, "headshots": 1 },
+            { "receiver": "enemy-sage-puuid", "damage": 150, "legshots": 0, "bodyshots": 1, "headshots": 0 }
+          ],
+          "score": 620,
+          "economy": { "loadoutValue": 3900, "weapon": "Phantom", "armor": "Heavy", "remaining": 2400, "spent": 3900 },
+          "ability": { "grenadeEffects": "cast", "ability1Effects": "cast", "ability2Effects": "cast", "ultimateEffects": "cast" }
+        }
+      ]
+    },
+    {
+      "roundNum": 3,
+      "roundResult": "Eliminated",
+      "roundCeremony": "CeremonyClutch",
+      "winningTeam": "Blue",
+      "winningTeamRole": "Attacker",
+      "bombPlanter": "",
+      "bombDefuser": "",
+      "plantRoundTime": 0,
+      "plantPlayerLocations": [],
+      "plantLocation": { "x": 0, "y": 0 },
+      "plantSite": "",
+      "defuseRoundTime": 0,
+      "defusePlayerLocations": [],
+      "defuseLocation": { "x": 0, "y": 0 },
+      "roundResultCode": "Elimination",
+      "playerStats": [
+        {
+          "puuid": "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw",
+          "kills": [
+            { "timeSinceGameStartMillis": 250000, "timeSinceRoundStartMillis": 60000, "killer": "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw", "victim": "enemy-cypher-puuid", "victimLocation": { "x": 1200, "y": 400 }, "assistants": [], "playerLocations": [ { "puuid": "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw", "viewRadians": 0.2, "location": { "x": 9800, "y": 350 } } ], "finishingDamage": { "damageType": "Weapon", "damageItem": "Operator", "isSecondaryFireMode": false } }
+          ],
+          "damage": [ { "receiver": "enemy-cypher-puuid", "damage": 150, "legshots": 0, "bodyshots": 1, "headshots": 0 } ],
+          "score": 150,
+          "economy": { "loadoutValue": 5000, "weapon": "Operator", "armor": "Heavy", "remaining": 100, "spent": 5000 },
+          "ability": { "grenadeEffects": "", "ability1Effects": "cast", "ability2Effects": "", "ultimateEffects": "" }
+        }
+      ]
+    }
+  ]
+}

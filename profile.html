@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Year in VALORANT</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #101014;
+      --panel: #1c1c22;
+      --border: #2a2a33;
+      --text: #f2f2f5;
+      --muted: #8a8a93;
+      --red: #E62244;
+      --blue: #0099E6;
+    }
+
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 40px;
+    }
+
+    h1 {
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    .value {
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--red);
+    }
+
+    .value.text {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .error {
+      color: var(--muted);
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="content"></div>
+
+  <script>
+    const MY_PUUID = "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw";
+
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("name");
+    const returnedState = params.get("state");
+    const savedState = sessionStorage.getItem("oauth_state");
+
+    if (!returnedState || returnedState !== savedState) {
+      document.getElementById("content").innerHTML =
+        `<h1>Something went wrong</h1><div class="error">Invalid sign-in. Please start again from the home page.</div>`;
+    } else {
+      showRecap(name);
+    }
+
+    async function showRecap(name) {
+      const response = await fetch("fake_match.json");
+      const match = await response.json();
+
+      const totalKills = countMyKills(match);
+      const totalDamage = sumMyDamageField(match, "damage");
+      const totalLegShots = sumMyDamageField(match, "legshots");
+      const totalHeadShots = sumMyDamageField(match, "headshots");
+      const totalBodyShots = sumMyDamageField(match, "bodyshots");
+
+      document.getElementById("content").innerHTML = `
+        <h1>Your <span style="color: var(--red)">Year</span> in <span style="color: var(--blue)">VALORANT</span></h1>
+        <div class="subtitle">Recap for ${name}</div>
+        <div class="stats-grid">
+          <div class="card"><div class="label">Total kills</div><div class="value">${totalKills}</div></div>
+          <div class="card"><div class="label">Total damage</div><div class="value">${totalDamage}</div></div>
+          <div class="card"><div class="label">Leg shots</div><div class="value text">You shot ${totalLegShots} people in the toes! Ouch.</div></div>
+          <div class="card"><div class="label">Headshots</div><div class="value text">${totalHeadShots} headshots. Nice crosshair placement!</div></div>
+          <div class="card"><div class="label">Bodyshots</div><div class="value text">${totalBodyShots} bodyshots. Cool I guess.</div></div>
+        </div>
+      `;
+    }
+
+    function sumMyDamageField(match, fieldName) {
+      let total = 0;
+      for (const round of match.roundResults) {
+        for (const playerStat of round.playerStats) {
+          if (playerStat.puuid === MY_PUUID) {
+            for (const damageEvent of playerStat.damage) {
+              total += damageEvent[fieldName] ?? 0;
+            }
+          }
+        }
+      }
+      return total;
+    }
+
+    function countMyKills(match) {
+      let totalKills = 0;
+      for (const round of match.roundResults) {
+        for (const playerStat of round.playerStats) {
+          if (playerStat.puuid === MY_PUUID) {
+            totalKills += playerStat.kills.length;
+          }
+        }
+      }
+      return totalKills;
+    }
+  </script>
+
+</body>
+</html>
