@@ -59,11 +59,14 @@
             margin-bottom: 10px;
         }
 
-
         .value.text {
             font-size: 18px;
             font-weight: 600;
             color: var(--text);
+        }
+
+        .kill-stats {
+            text-align: left;
         }
 
         .error {
@@ -135,6 +138,21 @@
             width: 100%;
             height: auto;
             margin-bottom: 24px;
+        }
+
+        .spray {
+            display: block;
+            max-width: 150px;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .stats-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
         }
     </style>
 </head>
@@ -225,6 +243,18 @@
             return data.data.filter(agent => agent.isPlayableCharacter);
         }
 
+        const agentsPromise = loadAgents().then(agents =>
+            Object.fromEntries(
+                agents.map(agent => [agent.displayName, agent])
+            )
+        );
+
+        const spraysPromise = loadSprays().then(sprays =>
+            Object.fromEntries(
+                sprays.map(spray => [spray.displayName, spray])
+            )
+        );
+
         async function showRecap(profileName, owner) {
             const response = await fetch("fake_match.json");
             const match = await response.json();
@@ -236,87 +266,96 @@
             const totalBodyShots = sumMyDamageField(match, "bodyshots");
             const badRound = countBadRounds(match);
 
-            const agents = await loadAgents();
-            const agent = agents[16];
+            const agents = await agentsPromise;
+            const sprays = await spraysPromise;
+
             const shareBar = owner ? renderShareBar(profileName) : "";
 
             document.getElementById("content").innerHTML = `
-  <div class="scroll-container">
+                <div class="scroll-container">
+                    <div class="slide">
+                        <h1>
+                            Your <span style="color: var(--red)">Year</span> in
+                            <span style="color: var(--blue)">VALORANT</span>
+                        </h1>
 
-    <div class="slide">
-      <h1>
-        Your <span style="color: var(--red)">Year</span> in
-        <span style="color: var(--blue)">VALORANT</span>
-      </h1>
+                        <div class="subtitle">Recap for ${profileName}</div>
 
-      <div class="subtitle">Recap for ${profileName}</div>
+                        ${agents["Gekko"] ? `
+                            <img
+                                class="agent-portrait"
+                                src="${agents["Gekko"].fullPortraitV2}"
+                                alt="${agents["Gekko"].displayName}"
+                            >
+                        ` : ""}
+                    </div>
 
-      ${agent ? `
-        <img
-          class="agent-portrait"
-          src="${agent.fullPortraitV2}"
-          alt="${agent.displayName}"
-        >
-      ` : ""}
-    </div>
+                    <div class="slide">
+                        <div class="stats-container">
+                            ${sprays["ORA by OneTap Spray"] ? `
+                                <img
+                                    class="spray"
+                                    src="${sprays["ORA by OneTap Spray"].fullTransparentIcon}"
+                                    alt="${sprays["ORA by OneTap Spray"].displayName}"
+                                >
+                            ` : ""}
 
-    <div class="slide">
-      <div class="label">Total kills</div>
-      <div class="value">${totalKills}</div>
-    </div>
+                            <div class="kill-stats">
+                                <div class="label">Total kills</div>
+                                <div class="value">${totalKills}</div>
+                            </div>
+                        </div>
+                    </div>
 
-    <div class="slide">
-      <div class="label">Total damage</div>
-      <div class="value">${totalDamage}</div>
-    </div>
+                    <div class="slide">
+                        <div class="label">Total damage</div>
+                        <div class="value">${totalDamage}</div>
+                    </div>
 
-    <div class="slide">
-      <div class="label">Leg shots</div>
-      <div class="value text">
-        You shot ${totalLegShots} people in the toes! Ouch.
-      </div>
-    </div>
+                    <div class="slide">
+                        <div class="label">Leg shots</div>
+                        <div class="value text">
+                            You shot ${totalLegShots} people in the toes! Ouch.
+                        </div>
+                    </div>
 
-    <div class="slide">
-      <div class="label">Headshots</div>
-      <div class="value text">
-        ${totalHeadShots} headshots. Nice crosshair placement!
-      </div>
-    </div>
+                    <div class="slide">
+                        <div class="label">Headshots</div>
+                        <div class="value text">
+                            ${totalHeadShots} headshots. Nice crosshair placement!
+                        </div>
+                    </div>
 
-  
-    <div class="slide">
-    <div class="label">Buying a weapon isn't always a good move!</div>
-    <div class="value text">
-        ${badRound === 0
+                    <div class="slide">
+                        <div class="label">Buying a weapon isn't always a good move!</div>
+                        <div class="value text">
+                            ${badRound === 0
                     ? "None? Is that even possible?"
                     : `There were ${badRound} times that you should've saved!`
                 }
-      </div>
-    <div class="subtitle">
-        ${badRound === 0
+                        </div>
+                        <div class="subtitle">
+                            ${badRound === 0
                     ? "You never spent credits without getting a kill. Good job, cheater!"
                     : `You spent credits without getting a kill ${badRound} times. Ouch! Consider saving next time!`
                 }
-     </div>
-    </div>
+                        </div>
+                    </div>
 
+                    <div class="slide">
+                        <div class="label">Bodyshots</div>
+                        <div class="value text">
+                            ${totalBodyShots} bodyshots. Cool I guess.
+                        </div>
+                    </div>
 
-    <div class="slide">
-      <div class="label">Bodyshots</div>
-      <div class="value text">
-        ${totalBodyShots} bodyshots. Cool I guess.
-      </div>
-    </div>
-
-    ${owner ? `
-      <div class="slide">
-        ${shareBar}
-      </div>
-    ` : ""}
-
-  </div>
-`;
+                    ${owner ? `
+                        <div class="slide">
+                            ${shareBar}
+                        </div>
+                    ` : ""}
+                </div>
+            `;
 
             if (owner) {
                 document.getElementById("toggleShare").addEventListener("click", function () {
@@ -356,14 +395,14 @@
             return totalKills;
         }
 
-
         function countBadRounds(match) {
             let badRound = 0;
+
             for (const round of match.roundResults) {
                 for (const playerStat of round.playerStats) {
                     if (playerStat.puuid === MY_PUUID) {
-                        if
-                            (playerStat.kills.length === 0 &&
+                        if (
+                            playerStat.kills.length === 0 &&
                             playerStat.economy.spent >= 1000
                         ) {
                             badRound++;
@@ -374,8 +413,6 @@
 
             return badRound;
         }
-
-
 
     </script>
 
