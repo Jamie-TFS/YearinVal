@@ -157,18 +157,20 @@
     </style>
 </head>
 
+
+
 <body>
 
+       <script src="generator.js"></script>
     <div id="content"></div>
 
     <script>
-        const MY_PUUID = "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw";
 
         const params = new URLSearchParams(window.location.search);
         const name = params.get("name");
         const returnedState = params.get("state");
         const savedState = sessionStorage.getItem("oauth_state");
-
+        const MY_PUUID = "_oEp3Hu1xJ76_ATFUC89FSWdKPzuL8b4Y2YdL_gABgBArlZccveoSdNViDAyKxUc4BEGvkbFfA1iTw"
         const isOwner = Boolean(returnedState && returnedState === savedState);
 
         function visibilityKey(profileName) {
@@ -185,6 +187,32 @@
                 makePublic ? "public" : "private"
             );
         }
+
+        async function loadSprays() {
+            const response = await fetch("https://valorant-api.com/v1/sprays");
+            const data = await response.json();
+
+            return data.data.filter(spray => spray.fullTransparentIcon);
+        }
+
+        async function loadAgents() {
+            const response = await fetch("https://valorant-api.com/v1/agents");
+            const data = await response.json();
+
+            return data.data.filter(agent => agent.isPlayableCharacter);
+        }
+
+        const agentsPromise = loadAgents().then(agents =>
+            Object.fromEntries(
+                agents.map(agent => [agent.displayName, agent])
+            )
+        );
+
+        const spraysPromise = loadSprays().then(sprays =>
+            Object.fromEntries(
+                sprays.map(spray => [spray.displayName, spray])
+            )
+        );
 
         if (isOwner) {
             showRecap(name, true);
@@ -229,42 +257,24 @@
         </div>`;
         }
 
-        async function loadSprays() {
-            const response = await fetch("https://valorant-api.com/v1/sprays");
-            const data = await response.json();
-
-            return data.data.filter(spray => spray.fullTransparentIcon);
-        }
-
-        async function loadAgents() {
-            const response = await fetch("https://valorant-api.com/v1/agents");
-            const data = await response.json();
-
-            return data.data.filter(agent => agent.isPlayableCharacter);
-        }
-
-        const agentsPromise = loadAgents().then(agents =>
-            Object.fromEntries(
-                agents.map(agent => [agent.displayName, agent])
-            )
-        );
-
-        const spraysPromise = loadSprays().then(sprays =>
-            Object.fromEntries(
-                sprays.map(spray => [spray.displayName, spray])
-            )
-        );
-
         async function showRecap(profileName, owner) {
-            const response = await fetch("fake_match.json");
-            const match = await response.json();
+            const season = generateSeason(80);
 
-            const totalKills = countMyKills(match);
-            const totalDamage = sumMyDamageField(match, "damage");
-            const totalLegShots = sumMyDamageField(match, "legshots");
-            const totalHeadShots = sumMyDamageField(match, "headshots");
-            const totalBodyShots = sumMyDamageField(match, "bodyshots");
-            const badRound = countBadRounds(match);
+            function seasonSum(season, statFn) {
+                let total = 0;
+                for (const match of season) {
+                    total += statFn(match);
+                }
+                return total;
+            }
+
+
+            const totalKills = seasonSum(season, countMyKills);
+            const totalDamage = seasonSum(season, match => sumMyDamageField(match, "damage"));
+            const totalLegShots = seasonSum(season, match => sumMyDamageField(match, "legshots"));
+            const totalBodyShots = seasonSum(season, match => sumMyDamageField(match, "bodyshots"));
+            const totalHeadShots = seasonSum(season, match => sumMyDamageField(match, "headshots"));
+            const badRound = seasonSum(season, countBadRounds);
 
             const agents = await agentsPromise;
             const sprays = await spraysPromise;
@@ -415,7 +425,6 @@
         }
 
     </script>
-
 </body>
 
 </html>
